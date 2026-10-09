@@ -1,0 +1,134 @@
+.scroll-indicator {
+  --scroll-indicator-short: 12px;
+  --scroll-indicator-neighbor: 28px;
+  --scroll-indicator-active: 48px;
+
+  position: fixed;
+  bottom: clamp(24px, 4vh, 40px);
+  left: clamp(20px, 2vw, 32px);
+  z-index: 900;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  color: var(--current-interface-color, var(--color-dark));
+  opacity: 1;
+
+  transition:
+    color 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 0.3s ease;
+}
+
+.scroll-indicator.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.scroll-indicator__item {
+  position: relative;
+  display: flex;
+  align-items: center;
+
+  width: 52px;
+  height: 18px;
+
+  color: inherit;
+}
+
+.scroll-indicator__item::after {
+  content: attr(aria-label);
+
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 8px);
+
+  font-family: "Satoshi-Variable", Arial, Helvetica, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  white-space: nowrap;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-4px, -50%);
+
+  transition:
+    opacity 0.25s ease,
+    transform 0.25s ease;
+}
+
+.scroll-indicator__item:hover::after,
+.scroll-indicator__item:focus-visible::after {
+  opacity: 0.8;
+  transform: translate(0, -50%);
+}
+
+.scroll-indicator__bar {
+  position: relative;
+  display: block;
+
+  width: var(--scroll-indicator-short);
+  height: 2px;
+
+  overflow: hidden;
+
+  transform-origin: left center;
+
+  transition: width 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.scroll-indicator__bar::before,
+.scroll-indicator__bar::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background-color: currentColor;
+}
+
+.scroll-indicator__bar::before {
+  opacity: 0.28;
+  transition: opacity 0.35s ease;
+}
+
+.scroll-indicator__bar::after {
+  opacity: 0;
+
+  transform: scaleX(var(--scroll-indicator-progress, 0));
+  transform-origin: left center;
+
+  transition: opacity 0.35s ease;
+}
+
+.scroll-indicator__item.is-neighbor .scroll-indicator__bar {
+  width: var(--scroll-indicator-neighbor);
+}
+
+.scroll-indicator__item.is-neighbor .scroll-indicator__bar::before {
+  opacity: 0.55;
+}
+
+.scroll-indicator__item.is-active .scroll-indicator__bar {
+  width: var(--scroll-indicator-active);
+}
+
+.scroll-indicator__item.is-active .scroll-indicator__bar::before {
+  opacity: 0.45;
+}
+
+.scroll-indicator__item.is-active[aria-current="location"] .scroll-indicator__bar::after {
+  opacity: 1;
+}
+
+.scroll-indicator__item:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}
+
+@media (max-width: 600px) {
+  .scroll-indicator {
+    display: none;
+  }
+}
