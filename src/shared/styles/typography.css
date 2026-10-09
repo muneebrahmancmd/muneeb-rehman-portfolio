@@ -1,0 +1,53 @@
+/* -------- TYPOGRAPHY -------- */
+body {
+  font-family: "CabinetGrotesk-Bold", Arial, Helvetica, sans-serif;
+}
+
+.text-manifesto {
+  font-size: 9.375rem; /* 150 */
+  font-weight: 700;
+  line-height: 1;
+}
+
+.text-manifesto-secondary {
+  font-size: 6.25rem; /* 100 */
+  font-weight: 700;
+  line-height: 1;
+}
+
+.text-title {
+  font-size: 7.8125rem; /* 125 */
+  font-weight: 700;
+  line-height: 0.9;
+}
+
+.text-subtitle {
+  font-size: 2.5rem; /* 40 */
+  font-weight: 400;
+  line-height: 1;
+}
+
+.text-project {
+  font-size: 5rem; /* 80 */
+  font-weight: 500;
+  font-style: italic;
+  line-height: 1;
+}
+
+.text-body {
+  font-size: 1.25rem; /* 20 */
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.text-button {
+  font-size: 1.25rem; /* 20 */
+  font-weight: 700;
+  line-height: 1.5;
+}
+
+.text-nav {
+  font-size: 1.5rem; /* 24 */
+  font-weight: 500;
+  line-height: 1;
+}
