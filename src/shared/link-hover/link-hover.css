@@ -1,0 +1,62 @@
+:where(
+  .site-header__link:not(.site-header__link--playground),
+  .text-link,
+  .project-context__link,
+  .credits-page__back,
+  .credits-list__license,
+  .credits-resource__links a
+) {
+  position: relative;
+  display: inline-block;
+  width: fit-content;
+}
+
+:where(
+  .site-header__link:not(.site-header__link--playground),
+  .text-link,
+  .project-context__link,
+  .credits-page__back,
+  .credits-list__license,
+  .credits-resource__links a
+)::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: -0.2em;
+
+  width: 100%;
+  height: 1px;
+
+  background-color: currentColor;
+
+  transform: scaleX(0);
+  transform-origin: left center;
+
+  transition: transform 0.35s ease;
+  pointer-events: none;
+}
+
+:where(
+  .site-header__link:not(.site-header__link--playground),
+  .text-link,
+  .project-context__link,
+  .credits-page__back,
+  .credits-list__license,
+  .credits-resource__links a
+):hover::after,
+:where(
+  .site-header__link:not(.site-header__link--playground),
+  .text-link,
+  .project-context__link,
+  .credits-page__back,
+  .credits-list__license,
+  .credits-resource__links a
+):focus-visible::after {
+  transform: scaleX(1);
+}
+
+.playground-link__word,
+.playground-link__letter {
+  display: inline-block;
+}
