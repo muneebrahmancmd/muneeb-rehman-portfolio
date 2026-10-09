@@ -1,0 +1,296 @@
+@import "../../shared/styles/satoshi.css";
+@import "../../shared/styles/cabinet-grotesk.css";
+@import "../../shared/styles/typography.css";
+@import "../../shared/styles/variables.css";
+@import "../../shared/site-header/header.css";
+@import "../../shared/link-hover/link-hover.css";
+@import "../../shared/page-transition/page-transition.css";
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  overscroll-behavior: none;
+}
+
+.contact-page {
+  --contact-frame-inset: clamp(8px, calc(2.5vw - 8px), 16px);
+  --contact-frame-radius: 18px;
+  --current-interface-color: var(--color-cream);
+
+  min-height: 100dvh;
+
+  background-color: var(--color-cream);
+  color: var(--color-cream);
+
+  font-family: "Satoshi-Variable", Arial, Helvetica, sans-serif;
+}
+
+.site-header {
+  z-index: 3;
+}
+
+.contact {
+  position: fixed;
+  inset: 0;
+  isolation: isolate;
+}
+
+.contact__frame {
+  position: fixed;
+  inset: var(--contact-frame-inset);
+  z-index: 0;
+
+  background-color: var(--color-dark);
+  border-radius: var(--contact-frame-radius);
+  visibility: hidden;
+}
+
+.contact__canvas {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  visibility: hidden;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.contact.is-webgl-ready .contact__frame,
+.contact.is-webgl-fallback .contact__frame {
+  visibility: visible;
+}
+
+.contact.is-webgl-ready .contact__canvas {
+  visibility: visible;
+  opacity: 1;
+}
+
+.contact__fallback {
+  position: fixed;
+  inset: var(--contact-frame-inset);
+  z-index: 2;
+
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: 1fr auto auto;
+  row-gap: clamp(18px, 1.5vw, 24px);
+  align-items: end;
+
+  padding: clamp(96px, 8vw, 152px) clamp(24px, 4vw, 72px) clamp(28px, 4vw, 64px);
+
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.contact.is-webgl-ready .contact__fallback,
+.contact.is-webgl-fallback .contact__fallback {
+  visibility: visible;
+}
+
+.contact__heading {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+
+  width: min(86vw, 1100px);
+  margin: 0;
+
+  font-family: "CabinetGrotesk-Variable", Arial, Helvetica, sans-serif;
+  font-size: clamp(64px, 9.4vw, 180px);
+  font-weight: 700;
+  line-height: 0.82;
+  letter-spacing: var(--letter-spacing-display);
+  text-align: center;
+
+  transform: translate(-50%, -58%);
+}
+
+.contact__heading span {
+  display: block;
+}
+
+.contact__availability {
+  position: absolute;
+  top: 69%;
+  left: 50%;
+
+  text-align: center;
+
+  transform: translateX(-50%);
+}
+
+.contact__availability p,
+.contact__services ul {
+  margin: 0;
+}
+
+.contact__availability p:first-child {
+  font-size: clamp(16px, 1.35vw, 24px);
+  font-weight: 500;
+}
+
+.contact__availability p:last-child {
+  margin-top: 5px;
+
+  font-size: clamp(13px, 1vw, 17px);
+  opacity: 0.65;
+}
+
+.contact__services {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.contact__services ul {
+  padding: 0;
+
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.35;
+
+  list-style: none;
+}
+
+.contact__email {
+  grid-column: 1;
+  grid-row: 3;
+  justify-self: start;
+
+  color: inherit;
+
+  font-size: clamp(13px, 1vw, 16px);
+  line-height: 1.35;
+  text-decoration: none;
+
+  pointer-events: auto;
+}
+
+.contact__email:focus-visible {
+  outline: 2px solid currentColor;
+  outline-offset: 4px;
+}
+
+.contact.is-webgl-ready .contact__fallback > :not(.contact__email) {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+.contact.is-webgl-ready .contact__email {
+  --contact-email-hit-padding: 8px;
+
+  position: fixed;
+  top: calc(var(--contact-email-top) - var(--contact-email-hit-padding));
+  left: calc(var(--contact-email-left) - var(--contact-email-hit-padding));
+  z-index: 1;
+
+  width: calc(var(--contact-email-width) + var(--contact-email-hit-padding) * 2);
+  height: calc(var(--contact-email-height) + var(--contact-email-hit-padding) * 2);
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: auto;
+  clip-path: none;
+
+  color: transparent;
+  background: transparent;
+  border: 0;
+  white-space: nowrap;
+
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.contact.is-webgl-ready .contact__email:focus-visible {
+  position: fixed;
+  top: auto;
+  left: 50%;
+  right: auto;
+  bottom: max(24px, env(safe-area-inset-bottom));
+  z-index: 1;
+
+  width: max-content;
+  max-width: calc(100vw - 32px);
+  height: auto;
+  margin: 0;
+  padding: 12px 18px;
+  overflow: visible;
+  clip: auto;
+  clip-path: none;
+  transform: translateX(-50%);
+  color: var(--color-dark);
+  background: var(--color-cream);
+  border-radius: 999px;
+  outline: 2px solid var(--color-dark);
+  outline-offset: 3px;
+  white-space: normal;
+  text-align: center;
+  pointer-events: auto;
+}
+
+@media (max-width: 700px) {
+  .contact__fallback {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr auto auto;
+    gap: 18px;
+
+    padding: 88px 24px 32px;
+  }
+
+  .contact__heading {
+    top: 42%;
+
+    width: calc(100% - 40px);
+
+    font-size: clamp(48px, 16vw, 78px);
+    line-height: 0.88;
+
+    transform: translate(-50%, -50%);
+  }
+
+  .contact__availability {
+    top: 64%;
+
+    width: calc(100% - 48px);
+  }
+
+  .contact__services {
+    grid-column: 1;
+    grid-row: 2;
+  }
+
+  .contact__email {
+    grid-column: 1;
+    grid-row: 3;
+    justify-self: start;
+  }
+}
+
+@media (orientation: landscape) and (max-height: 500px) {
+  .contact__fallback {
+    padding: 72px 28px 24px;
+  }
+
+  .contact__heading {
+    top: 46%;
+
+    font-size: clamp(44px, 10vw, 78px);
+    line-height: 0.84;
+  }
+
+  .contact__availability {
+    top: 70%;
+  }
+}
