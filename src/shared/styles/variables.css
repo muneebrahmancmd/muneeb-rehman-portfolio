@@ -1,0 +1,16 @@
+/* -------- VAR -------- */
+:root {
+  /* Color */
+  --color-cream: #f5e7df;
+  --color-dark: #1f1d1d;
+
+  /* Border radius */
+  --border-radius-block: 40px;
+  --border-radius-card: 15px;
+
+  /* Padding */
+  --padding-min: 1rem;
+
+  /* Font */
+  --letter-spacing-display: -0.025em;
+}
