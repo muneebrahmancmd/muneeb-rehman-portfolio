@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="robots" content="noindex, follow" />
+
+    <link rel="stylesheet" href="/src/shared/styles/reset.css" />
+    <link rel="stylesheet" href="/src/pages/not-found/not-found.css" />
+    <link rel="icon" type="image/svg+xml" href="/brand/logo-muneeb-rehman.svg" />
+
+    <script type="module" src="/src/pages/not-found/not-found.js"></script>
+
+    <title data-i18n="notFound.title">404 — Page Not Found | Muneeb Rehman</title>
+  </head>
+
+  <body class="not-found-page">
+    <!-------- TRANSITION -------->
+    <script>
+      if (sessionStorage.getItem("pageTransitionPending") === "true") {
+        const storedColor = sessionStorage.getItem("pageTransitionColor")
+        const color = storedColor === "dark" ? "dark" : "cream"
+
+        const transition = document.createElement("div")
+
+        transition.classList.add("page-transition", `page-transition--${color}`)
+
+        transition.setAttribute("aria-hidden", "true")
+        document.body.prepend(transition)
+      }
+    </script>
+
+    <main class="not-found">
+      <div class="not-found__scene">
+        <header class="site-header"></header>
+
+        <canvas class="not-found__canvas" aria-hidden="true"></canvas>
+
+        <section class="not-found__content" aria-labelledby="not-found-title">
+          <h1 class="not-found__title" id="not-found-title">404</h1>
+
+          <p class="not-found__message">
+            <span data-i18n="notFound.messageLine1">Lost between</span><br />
+            <span data-i18n="notFound.messageLine2">design and code</span>
+          </p>
+
+          <a class="not-found__back" href="/" data-i18n="notFound.backHome">
+            Go back home
+          </a>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
