@@ -1,0 +1,33 @@
+@import "../styles/variables.css";
+
+/* -------- PAGE TRANSITION -------- */
+.page-transition {
+  --page-transition-radius-x: min(60vh, 42vw);
+  --page-transition-radius-y: 60vh;
+
+  position: fixed;
+  top: -10vh;
+  left: -20vw;
+  z-index: 9999;
+
+  display: block;
+  width: 140vw;
+  height: 120vh;
+
+  background-color: var(--color-cream);
+  border-top-left-radius: var(--page-transition-radius-x)
+    var(--page-transition-radius-y);
+  border-bottom-left-radius: var(--page-transition-radius-x)
+    var(--page-transition-radius-y);
+
+  pointer-events: none;
+  will-change: transform, border-radius;
+}
+
+.page-transition--cream {
+  background-color: var(--color-cream);
+}
+
+.page-transition--dark {
+  background-color: var(--color-dark);
+}
