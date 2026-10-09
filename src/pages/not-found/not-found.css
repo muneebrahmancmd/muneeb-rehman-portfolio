@@ -1,0 +1,146 @@
+@import "../../shared/styles/satoshi.css";
+@import "../../shared/styles/cabinet-grotesk.css";
+@import "../../shared/styles/typography.css";
+@import "../../shared/styles/variables.css";
+@import "../../shared/site-header/header.css";
+@import "../../shared/link-hover/link-hover.css";
+@import "../../shared/page-transition/page-transition.css";
+
+html,
+body {
+  width: 100%;
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.not-found-page {
+  --current-interface-color: var(--color-cream);
+  --not-found-frame-inset: clamp(8px, calc(2.5vw - 8px), 16px);
+
+  min-height: 100vh;
+  min-height: 100svh;
+
+  color: var(--color-cream);
+  background-color: var(--color-cream);
+}
+
+.not-found-page .site-header {
+  position: absolute;
+
+  padding: clamp(24px, 2.2vw, 32px) clamp(24px, 2.8vw, 40px);
+
+  color: var(--color-cream);
+  opacity: 1;
+}
+
+.not-found {
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+.not-found__scene {
+  position: fixed;
+  inset: var(--not-found-frame-inset);
+
+  overflow: hidden;
+
+  background-color: #e35147;
+  background-image: url("/404/gradient-404.webp");
+  background-position: center;
+  background-size: cover;
+  border-radius: 32px;
+}
+
+.not-found__canvas {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  opacity: 0;
+  pointer-events: none;
+}
+
+.not-found__scene.is-webgl-ready .not-found__canvas {
+  opacity: 1;
+}
+
+.not-found__content {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  width: 100%;
+  height: 100%;
+  padding: clamp(96px, 13dvh, 144px) 24px clamp(32px, 6dvh, 64px);
+
+  text-align: center;
+}
+
+.not-found__title {
+  font-family: "CabinetGrotesk-Variable", Arial, Helvetica, sans-serif;
+  font-size: clamp(7rem, min(20.833vw, 32dvh), 18.75rem);
+  font-weight: 500;
+  line-height: 0.7;
+  letter-spacing: -0.03em;
+}
+
+.not-found__message {
+  max-width: 14ch;
+  margin-top: clamp(18px, 2.2dvh, 24px);
+
+  font-family: "CabinetGrotesk-Variable", Arial, Helvetica, sans-serif;
+  font-size: clamp(1.5rem, 2.78vw, 2.5rem);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.not-found__back {
+  margin-top: clamp(32px, 5dvh, 52px);
+  padding: 0.8em 1.1em;
+
+  color: inherit;
+  border: 2px solid currentColor;
+  border-radius: 999px;
+
+  font-family: "CabinetGrotesk-Variable", Arial, Helvetica, sans-serif;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  font-weight: 700;
+  line-height: 0.87;
+  text-decoration: none;
+  transition: color 0.25s ease;
+}
+
+.not-found__back:hover {
+  color: var(--color-dark);
+}
+
+.not-found__back:focus-visible {
+  color: var(--color-dark);
+  outline: 2px solid var(--color-cream);
+  outline-offset: 4px;
+}
+
+@media (max-width: 600px) {
+  .not-found__content {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .not-found__message {
+    max-width: 13ch;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found__back {
+    transition: none;
+  }
+}
