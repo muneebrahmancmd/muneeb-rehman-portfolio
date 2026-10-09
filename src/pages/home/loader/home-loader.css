@@ -1,0 +1,43 @@
+html[data-home-loader-state] {
+  background-color: var(--color-dark);
+  scrollbar-gutter: stable;
+}
+
+html[data-home-loader-state].lenis.lenis-stopped {
+  overflow-y: hidden;
+}
+
+/* -------- HOME LOADER -------- */
+.home-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: none;
+  overflow: hidden;
+
+  background-color: var(--color-cream);
+}
+
+/* "restoring" is a flat cover: the WebGL loader stays disabled in that state */
+html[data-home-loader-state="pending"] .home-loader,
+html[data-home-loader-state="restoring"] .home-loader {
+  display: block;
+}
+
+html[data-home-loader-theme="dark"] .home-loader {
+  background-color: var(--color-dark);
+}
+
+.home-loader--canvas-ready {
+  background-color: transparent;
+}
+
+.home-loader__canvas {
+  position: absolute;
+  inset: 0;
+
+  display: block;
+  width: 100%;
+  height: 100%;
+}
